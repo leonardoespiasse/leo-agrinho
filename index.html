@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festejando Conexão: Horta Campo-Cidade</title>
+    <style>
+        /* Estilos Gerais */
+        :root {
+            --verde-primario: #2E7D32;
+            --verde-secundario: #4CAF50;
+            --verde-claro: #C8E6C9;
+            --bege: #FFF8E1;
+            --marrom: #5D4037;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bege);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+        
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--verde-primario);
+            font-size: 1.2rem;
+        }
+        
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Navegação */
+        nav {
+            background-color: var(--verde-primario);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            padding: 15px 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav a:hover {
+            color: var(--verde-claro);
+        }
+        
+        nav i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--verde-primario);
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        section h2::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--verde-secundario);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        /* Sobre a Horta */
+        #sobre {
+            background-color: white;
+        }
+        
+        .sobre-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .sobre-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .sobre-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .sobre-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sobre-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .sobre-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Benefícios */
+        #beneficios {
+            background-color: var(--verde-claro);
+        }
+        
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .beneficio-card {
+            background-color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .beneficio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .beneficio-icon {
+            font-size: 3rem;
+            color: var(--verde-primario);
+            margin-bottom: 20px;
+        }
+        
+        .beneficio-card h3 {
+            margin-bottom: 15px;
+            color: var(--marrom);
+        }
+        
+        /* Como Participar */
+        #participar {
+            background-color: white;
+        }
+        
+        .passos {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .passo {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background-color: var(--bege);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid var(--verde-secundario);
+        }
+        
+        .passo-numero {
+            background-color: var(--verde-primario);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .passo-conteudo h3 {
+            margin-bottom: 10px;
+            color: var(--verde-primario);
+        }
+        
+        /* Galeria */
+        #galeria {
+            background-color: var(--verde-claro);
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .galeria-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .galeria-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: white;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .galeria-item:hover .overlay {
+            opacity: 1;
+        }
+        
+        /* Contato */
+        #contato {
+            background-color: white;
+        }
+        
+        .contato-container {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .contato-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contato-info h3 {
+            color: var(--verde-primario);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .info-icon {
+            margin-right: 15px;
+            color: var(--verde-secundario);
+            font-size: 1.5rem;
+        }
+        
+        .contato-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--marrom);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background-color: var(--verde-primario);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--verde-secundario);
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--marrom);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col h3 {
+            margin-bottom: 20px;
+            color: var(--verde-claro);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--verde-claro);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                padding: 10px;
+            }
+            
+            .sobre-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">Horta<br>Comunitária</div>
+        <div class="container">
+            <h1>Festejando a Conexão Campo-Cidade</h1>
+            <p>Unindo saberes tradicionais e urbanos através da agricultura comunitária e sustentável</p>
+        </div>
+    </header>
+    
+    <!-- Navegação -->
+    <nav>
+        <ul>
+            <li><a href="#sobre"><i class="fas fa-seedling"></i> Sobre o Projeto</a></li>
+            <li><a href="#beneficios"><i class="fas fa-heart"></i> Benefícios</a></li>
+            <li><a href="#participar"><i class="fas fa-hands-helping"></i> Como Participar</a></li>
+            <li><a href="#galeria"><i class="fas fa-images"></i> Galeria</a></li>
+            <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Seção Sobre -->
+    <section id="sobre">
+        <div class="container">
+            <h2>Sobre a Horta Comunitária</h2>
+            <div class="sobre-content">
+                <div class="sobre-text">
+                    <p>Nossa horta comunitária é um espaço de conexão entre o saber tradicional do campo e a dinâmica urbana da cidade. Aqui, agricultores experientes compartilham seus conhecimentos com moradores urbanos, criando um intercâmbio valioso de saberes.</p>
+                    <p>O projeto nasceu da necessidade de aproximar as pessoas da origem dos alimentos, promovendo segurança alimentar, sustentabilidade e fortalecimento comunitário.</p>
+                    <p>Através de oficinas, mutirões e colheitas coletivas, construímos pontes entre esses dois mundos que, apesar de diferentes, são complementares e essenciais para nossa sociedade.</p>
+                </div>
+                <div class="sobre-image">
+                    <img src="img/horta 1" alt="Horta comunitária">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Benefícios -->
+    <section id="beneficios">
+        <div class="container">
+            <h2>Benefícios da Horta Urbana</h2>
+            <div class="beneficios-grid">
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Alimentos Saudáveis</h3>
+                    <p>Produção de alimentos frescos, orgânicos e livres de agrotóxicos para a comunidade.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Integração Social</h3>
+                    <p>Espaço de convivência que une diferentes gerações, culturas e saberes.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>Sustentabilidade</h3>
+                    <p>Práticas ecológicas como compostagem e reaproveitamento de resíduos.</p>
+                </div>
+                <div class="beneficio-card">
+                    <div class="beneficio-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Educação Ambiental</h3>
+                    <p>Oportunidade de aprendizado sobre agricultura, ecologia e alimentação saudável.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Como Participar -->
+    <section id="participar">
+        <div class="container">
+            <h2>Como Participar</h2>
+            <div class="passos">
+                <div class="passo">
+                    <div class="passo-numero">1</div>
+                    <div class="passo-conteudo">
+                        <h3>Visite a Horta</h3>
+                        <p>Venha conhecer nosso espaço durante os horários de funcionamento. Teremos prazer em mostrar o projeto e explicar como tudo funciona.</p>
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">2</div>
+                    <div class="passo-conteudo">
+                        <h3>Inscreva-se</h3>
+                        <p>Preencha nosso formulário de cadastro informando seus dados e interesses. Você pode escolher entre várias formas de participação.</p>
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">3</div>
+                    <div class="passo-conteudo">
+                        <h3>Participe das Oficinas</h3>
+                        <p>Assista às oficinas introdutórias sobre cultivo urbano, manejo orgânico e outros temas relevantes para começar.</p>
+                    </div>
+                </div>
+                <div class="passo">
+                    <div class="passo-numero">4</div>
+                    <div class="passo-conteudo">
+                        <h3>Junte-se aos Mutirões</h3>
+                        <p>Participe dos nossos dias de mutirão para cuidar coletivamente da horta e aprender na prática.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Galeria -->
+    <section id="galeria">
+        <div class="container">
+            <h2>Nossa Galeria</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item">
+                    <img src="img/leo1" alt="Mutirão na horta">
+                    <div class="overlay">Mutirão comunitário</div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Oficina de plantio">
+                    <div class="overlay">Oficina de plantio</div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Colheita coletiva">
+                    <div class="overlay">Colheita coletiva</div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Canteiros da horta">
+                    <div class="overlay">Canteiros produtivos</div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Crianças na horta">
+                    <div class="overlay">Educação ambiental</div>
+                </div>
+                <div class="galeria-item">
+                    <img src="https://images.unsplash.com/photo-1604866830513-3bc1d7216dc3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Feira de trocas">
+                    <div class="overlay">Feira de trocas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção Contato -->
+    <section id="contato">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <div class="contato-container">
+                <div class="contato-info">
+                    <h3>Informações</h3>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>Rua Cultivo Feliz, 123 - Bairro Verde, Cidade</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>(00) 1234-5678</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p>contato@hortacampocidade.org</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <p>Terça a Sábado: 8h às 17h<br>Domingo: 8h às 12h</p>
+                    </div>
+                </div>
+                <div class="contato-form">
+                    <h3>Mande sua Mensagem</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" id="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Horta Comunitária</h3>
+                    <p>Conectando o saber tradicional do campo com a dinâmica urbana através da agricultura comunitária e sustentável.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#participar">Participe</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Festejando Conexão Campo-Cidade. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
